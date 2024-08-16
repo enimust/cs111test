@@ -1,0 +1,1579 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>CS111 Lecture: Functions &#8212; My sample book</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=87e54e7c" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'content/Lecture03/Functions';</script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="prev" title="Introduction to the Python Language - Solutions" href="../Lecture02/PythonIntroWithSolutions.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../_static/logo.png" class="logo__image only-light" alt="My sample book - Home"/>
+    <script>document.write(`<img src="../../_static/logo.png" class="logo__image only-dark" alt="My sample book - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    Welcome to your Jupyter Book
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../Lecture01/CourseIntro.html">Course Intro: Drawing Tinman</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Lecture02/PythonIntro.html">Introduction to the Python Language</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Lecture02/PythonIntroWithSolutions.html">Introduction to the Python Language - Solutions</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">CS111 Lecture: Functions</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://mybinder.org/v2/gh/executablebooks/jupyter-book/master?urlpath=tree/docs/content/Lecture03/Functions.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch on Binder"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img alt="Binder logo" src="../../_static/images/logo_binder.svg">
+  </span>
+<span class="btn__text-container">Binder</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Fcontent/Lecture03/Functions.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../_sources/content/Lecture03/Functions.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>CS111 Lecture: Functions</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#defining-your-own-functions">1. Defining your own functions</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#multiple-parameters">2. Multiple parameters</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-1-define-your-own-function-average">3. Exercise 1: Define your own function: <code class="docutils literal notranslate"><span class="pre">average</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#functions-that-call-other-functions">4. Functions that call other functions</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#zero-parameter-functions">5. Zero-Parameter Functions</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#return-vs-print">6. <code class="docutils literal notranslate"><span class="pre">return</span></code> vs. <code class="docutils literal notranslate"><span class="pre">print</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#functions-with-side-effect-and-no-return-value">7. Functions with side effect and no return value</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-2-incremental-development-of-functions-with-number-statistics">8. Exercise 2: Incremental Development of Functions with Number Statistics</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-3-old-macdonald-s-song">9. Exercise 3: Old Macdonald’s Song</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#functions-with-graphics">10. Functions with Graphics</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-4-colorful-stars">11. Exercise 4: Colorful Stars</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-5-drawrectangle">12. Exercise 5: <code class="docutils literal notranslate"><span class="pre">drawRectangle</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-6-drawsquare">13. Exercise 6: <code class="docutils literal notranslate"><span class="pre">drawSquare</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fish-tank">14. Fish Tank</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fruitful-graphics">15. Fruitful Graphics</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-7-fruitful-square">16. Exercise 7: Fruitful Square</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#practice-writing-functions">17. Practice Writing Functions</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#a-squarediff">A. squareDiff</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#b-lottery">B. lottery</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c-greeting">C. greeting</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#d-splitsquare">D.  splitSquare</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="cs111-lecture-functions">
+<h1>CS111 Lecture: Functions<a class="headerlink" href="#cs111-lecture-functions" title="Link to this heading">#</a></h1>
+<p>The content of this notebook will be covered over three three lectures. There is no need to try to complete sll of it right away.</p>
+<p><strong>Table of Content</strong></p>
+<p><a class="reference internal" href="#sec1"><span class="xref myst">1. Defining your own functions</span></a><br />
+<a class="reference internal" href="#sec2"><span class="xref myst">2. Multiple parameters</span></a><br />
+<a class="reference internal" href="#sec3"><span class="xref myst">3. Excercise 1: write your own function <code class="docutils literal notranslate"><span class="pre">average</span></code></span></a><br />
+<a class="reference internal" href="#sec4"><span class="xref myst">4. Functions that call other functions</span></a><br />
+<a class="reference internal" href="#sec5"><span class="xref myst">5. Zero-parameter functions</span></a><br />
+<a class="reference internal" href="#sec6"><span class="xref myst">6. return vs. print</span></a><br />
+<a class="reference internal" href="#sec7"><span class="xref myst">7. Functions with side effect and no return value</span></a><br />
+<a class="reference internal" href="#sec8"><span class="xref myst">8. Exercise 2: Incremental development of functions with number statistics</span></a><br />
+<a class="reference internal" href="#sec9"><span class="xref myst">9. Exercise 3: Old Macdonald has a farm</span></a><br />
+<a class="reference internal" href="#sec10"><span class="xref myst">10. Functions with graphics</span></a><br />
+<a class="reference internal" href="#sec11"><span class="xref myst">11. Exercise 4: Colorful stars</span></a><br />
+<a class="reference internal" href="#sec12"><span class="xref myst">12. Exercise 5: <code class="docutils literal notranslate"><span class="pre">drawRectangle</span></code></span></a><br />
+<a class="reference internal" href="#sec13"><span class="xref myst">13. Exercise 6: <code class="docutils literal notranslate"><span class="pre">drawSquare</span></code></span></a><br />
+<a class="reference internal" href="#sec14"><span class="xref myst">14. Fish Tank</span></a><br />
+<a class="reference internal" href="#sec15"><span class="xref myst">15. Fruitful Graphics</span></a><br />
+<a class="reference internal" href="#sec16"><span class="xref myst">16. Exercise 7: Fruitful square</span></a><br />
+<a class="reference internal" href="#sec17"><span class="xref myst">17. Practice Writing Functions</span></a></p>
+<p><a id="sec1"></a></p>
+<section id="defining-your-own-functions">
+<h2>1. Defining your own functions<a class="headerlink" href="#defining-your-own-functions" title="Link to this heading">#</a></h2>
+<p>Functions are a way of abstracting over computational processes by capturing common patterns.  You have already used built-in functions like <code class="docutils literal notranslate"><span class="pre">len</span></code>, <code class="docutils literal notranslate"><span class="pre">max</span></code>, <code class="docutils literal notranslate"><span class="pre">input</span></code> and many more.  Here is a <strong>user-defined function</strong> to compute the square of a number.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">square</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;A simple user-defined function.&quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">x</span> <span class="o">*</span> <span class="n">x</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Calling or invoking the function:</strong> we can call a function many times, but we define it once.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">square</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">square</span><span class="p">(</span><span class="mf">7.5</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Parameters</strong></p>
+<p>A parameter is a variable used in the definition of a function, which will be initialized with an argument value during a function call.</p>
+<p>The particular name we use for a parameter is irrelevant, as long as we use the name consistently in the function’s body.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">square</span><span class="p">(</span><span class="n">someNumber</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;A similar definition of the function, but using a different parameter name.&quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">someNumber</span> <span class="o">*</span> <span class="n">someNumber</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>The following function call will generate the same result as the one from the definition of the function with a different parameter name.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">square</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><a id="sec2"></a></p>
+</section>
+<section id="multiple-parameters">
+<h2>2. Multiple parameters<a class="headerlink" href="#multiple-parameters" title="Link to this heading">#</a></h2>
+<p>A function can take as many parameters as needed. They are listed one by one, separated by comma.</p>
+<p><strong>Important:</strong> The order of parameters specifies the order of argument values used during the function call.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">energy</span><span class="p">(</span><span class="n">mass</span><span class="p">,</span> <span class="n">velocity</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Calculate kinetic energy&quot;&quot;&quot;</span> 
+    <span class="k">return</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="n">mass</span> <span class="o">*</span> <span class="n">velocity</span><span class="o">**</span><span class="mi">2</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Problem description:</strong> A 1 kg brick falls off a high roof. It reaches the ground with a velocity of 8.85 m·s<sup>-1</sup>. What is the kinetic energy of the brick when it reaches the ground?</p>
+<p><strong>Call the function:</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">energy</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mf">8.85</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">math</span>
+
+<span class="k">def</span> <span class="nf">distanceBetweenPoints</span><span class="p">(</span><span class="n">x1</span><span class="p">,</span> <span class="n">y1</span><span class="p">,</span> <span class="n">x2</span><span class="p">,</span> <span class="n">y2</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Calculate the distance between points &quot;&quot;&quot;</span> 
+    <span class="k">return</span> <span class="n">math</span><span class="o">.</span><span class="n">sqrt</span><span class="p">((</span><span class="n">x2</span><span class="o">-</span><span class="n">x1</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="p">(</span><span class="n">y2</span><span class="o">-</span><span class="n">y1</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>You are given the following simple graph that depicts two points A and B in the 2-D coordinate system, where every tick is a unit of 1. Call the functioon <code class="docutils literal notranslate"><span class="pre">distanceBetweenPoints</span></code> with the right values to calculate the distance.</p>
+<img src="simpleTwoPoints.png" width="250"><p><strong>Call the function:</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#Your code here</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><a id="sec3"></a></p>
+</section>
+<section id="exercise-1-define-your-own-function-average">
+<h2>3. Exercise 1: Define your own function: <code class="docutils literal notranslate"><span class="pre">average</span></code><a class="headerlink" href="#exercise-1-define-your-own-function-average" title="Link to this heading">#</a></h2>
+<p>Define a function named <code class="docutils literal notranslate"><span class="pre">average</span></code> that takes two numbers and returns the average of the two.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Your code here</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now try calling your function as below:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">average</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">average</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">12</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><a id="sec4"></a></p>
+</section>
+<section id="functions-that-call-other-functions">
+<h2>4. Functions that call other functions<a class="headerlink" href="#functions-that-call-other-functions" title="Link to this heading">#</a></h2>
+<p>When defining your functions, you can call other functions within the body of your definition.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">favNum</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">num</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">name</span> <span class="o">+</span> <span class="s2">&quot;&#39;s favorite number is &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">num</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">favNum</span><span class="p">(</span><span class="s1">&#39;Sohie&#39;</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">favNum</span><span class="p">(</span><span class="s1">&#39;Carolyn&#39;</span><span class="p">,</span> <span class="mi">17</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>We can also call our own user-defined functions like the function <code class="docutils literal notranslate"><span class="pre">square</span></code> above.  Make sure that <code class="docutils literal notranslate"><span class="pre">square</span></code> above is defined before you try and invoke <code class="docutils literal notranslate"><span class="pre">hypotenuse</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">math</span>
+
+<span class="k">def</span> <span class="nf">hypotenuse</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">math</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">square</span><span class="p">(</span><span class="n">a</span><span class="p">)</span> <span class="o">+</span> <span class="n">square</span><span class="p">(</span><span class="n">b</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">hypotenuse</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">hypotenuse</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">12</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><a id="sec5"></a></p>
+</section>
+<section id="zero-parameter-functions">
+<h2>5. Zero-Parameter Functions<a class="headerlink" href="#zero-parameter-functions" title="Link to this heading">#</a></h2>
+<p>Sometimes it’s helpful to define functions that have zero parameters.<br />
+<strong>Note:</strong> you still need parentheses after the function name when defining and invoking the function.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">rocks</span><span class="p">():</span>
+    <span class="k">return</span> <span class="s2">&quot;CS111 rocks!&quot;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">rocks</span><span class="p">(),</span> <span class="n">rocks</span><span class="p">(),</span> <span class="n">rocks</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Invoke the same function multiple times</span>
+<span class="k">def</span> <span class="nf">rocks3</span><span class="p">():</span>
+    <span class="k">return</span> <span class="n">rocks</span><span class="p">()</span> <span class="o">+</span> <span class="s1">&#39; &#39;</span> <span class="o">+</span> <span class="n">rocks</span><span class="p">()</span> <span class="o">+</span> <span class="s1">&#39; &#39;</span> <span class="o">+</span> <span class="n">rocks</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">rocks3</span><span class="p">(),</span> <span class="n">rocks3</span><span class="p">(),</span> <span class="n">rocks3</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Python has some useful built-in functions that take zero parameters, like <code class="docutils literal notranslate"><span class="pre">random</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">random</span> <span class="kn">import</span> <span class="n">random</span>
+<span class="n">random</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><a id="sec6"></a></p>
+</section>
+<section id="return-vs-print">
+<h2>6. <code class="docutils literal notranslate"><span class="pre">return</span></code> vs. <code class="docutils literal notranslate"><span class="pre">print</span></code><a class="headerlink" href="#return-vs-print" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">return</span></code> specifies the result of the function invocation</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">print</span></code> causes characters to be displayed in the shell.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">square</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">x</span><span class="o">*</span><span class="n">x</span>
+
+<span class="k">def</span> <span class="nf">squarePrintArg</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;The argument of square is &#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">x</span><span class="o">*</span><span class="n">x</span>
+
+<span class="k">def</span> <span class="nf">printSquare</span><span class="p">(</span><span class="n">a</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;square of &#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">a</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39; is &#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">square</span><span class="p">(</span><span class="n">a</span><span class="p">)))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Try out the result of the following expressions:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">square</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span> <span class="o">+</span> <span class="n">square</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">squarePrintArg</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span> <span class="o">+</span> <span class="n">squarePrintArg</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">printSquare</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>IMPORTANT</strong>: If a function doesn’t return a value (but only prints one as a side effect), don’t use it in expressions where<br />
+a value is expected. Can you guess what result you’ll get below:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">printSquare</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span> <span class="o">+</span> <span class="n">printSquare</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>DIGGING DEEPER</strong>: See the notes on the <code class="docutils literal notranslate"><span class="pre">None</span></code> value and the <code class="docutils literal notranslate"><span class="pre">NoneType</span></code> type to understand in more detail why this happens.</p>
+<p>We can verify that <code class="docutils literal notranslate"><span class="pre">None</span></code> is not a string, by invoking the built-in function <code class="docutils literal notranslate"><span class="pre">type</span></code>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">type</span><span class="p">(</span><span class="kc">None</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">type</span><span class="p">(</span><span class="n">printSquare</span><span class="p">(</span><span class="mi">3</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">result</span> <span class="o">=</span> <span class="n">printSquare</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><a id="sec7"></a></p>
+</section>
+<section id="functions-with-side-effect-and-no-return-value">
+<h2>7. Functions with side effect and no return value<a class="headerlink" href="#functions-with-side-effect-and-no-return-value" title="Link to this heading">#</a></h2>
+<p>A function doesn’t always need to return a value. It might only display characters on the screen, or perform other side effects.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">printBanner</span><span class="p">(</span><span class="n">s</span><span class="p">):</span>
+    <span class="c1"># 5 stars, 3 spaces, input string, 3 spaces, 5 stars</span>
+    <span class="n">banner_length</span> <span class="o">=</span> <span class="mi">5</span> <span class="o">+</span> <span class="mi">3</span> <span class="o">+</span> <span class="nb">len</span><span class="p">(</span><span class="n">s</span><span class="p">)</span> <span class="o">+</span> <span class="mi">3</span> <span class="o">+</span> <span class="mi">5</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;*&#39;</span> <span class="o">*</span> <span class="n">banner_length</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;*****&#39;</span> <span class="o">+</span> <span class="s1">&#39;   &#39;</span> <span class="o">+</span> <span class="n">s</span> <span class="o">+</span> <span class="s1">&#39;   &#39;</span> <span class="o">+</span> <span class="s1">&#39;*****&#39;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;*&#39;</span> <span class="o">*</span> <span class="n">banner_length</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">printBanner</span><span class="p">(</span><span class="s2">&quot;CS111&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>The following <code class="docutils literal notranslate"><span class="pre">printTimeFromSeconds</span></code> function use arithmetic operations and local variables to display the time for a given number of seconds.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">printTimeFromSeconds</span><span class="p">(</span><span class="n">s</span><span class="p">):</span> <span class="c1"># Total seconds</span>
+    <span class="n">seconds</span> <span class="o">=</span> <span class="n">s</span> <span class="o">%</span> <span class="mi">60</span> <span class="c1"># Remaining seconds</span>
+    <span class="n">m</span> <span class="o">=</span> <span class="n">s</span> <span class="o">//</span> <span class="mi">60</span>       <span class="c1"># Total minutes</span>
+    <span class="n">minutes</span> <span class="o">=</span> <span class="n">m</span> <span class="o">%</span> <span class="mi">60</span> <span class="c1"># Remaining minutes</span>
+    <span class="n">h</span> <span class="o">=</span> <span class="n">m</span> <span class="o">//</span> <span class="mi">60</span>       <span class="c1"># Total hours</span>
+    <span class="n">hours</span> <span class="o">=</span> <span class="n">h</span> <span class="o">%</span> <span class="mi">24</span>   <span class="c1"># Remaining hours</span>
+    <span class="n">days</span> <span class="o">=</span> <span class="n">h</span> <span class="o">//</span> <span class="mi">24</span>    <span class="c1"># Total days</span>
+    <span class="nb">print</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">s</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39; seconds is equivalent to:&#39;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">days</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39; days&#39;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">hours</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39; hours&#39;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">minutes</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39; minutes&#39;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">seconds</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39; seconds&#39;</span><span class="p">)</span>
+
+<span class="n">printTimeFromSeconds</span><span class="p">(</span><span class="mi">1000000</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><a id="sec8"></a></p>
+</section>
+<section id="exercise-2-incremental-development-of-functions-with-number-statistics">
+<h2>8. Exercise 2: Incremental Development of Functions with Number Statistics<a class="headerlink" href="#exercise-2-incremental-development-of-functions-with-number-statistics" title="Link to this heading">#</a></h2>
+<p>Incremental development is the process of slowly adding bits of code in a cumulative fashion and testing along the  way to ensure proper functionality.  We will illustrate incremental development using a function that prints out statistics about a number, similar to PS01.</p>
+<p>Our function should take a single parameter called num and print out some simple statistics about the number.  Below
+is an example output when our function is given the number three.</p>
+<p>Your number is 3.<br />
+Your number squared is 9.<br />
+Your number has a remainder of 1 when divided by 2.</p>
+<p>In the box below, focus on the header definition and simply have the function print out three and nothing else.  It’s always important to start simple.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># create a function called numStats that takes a parameter called num and prints it out</span>
+<span class="c1"># Your code here</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Test to make sure your function properly works by calling it in the box below.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Call your function and make sure it produces the right output</span>
+<span class="n">numStats</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Adjust the body of the function so that it now prints out the first line of text.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Your code here</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Test to make sure your function properly prints the first line by calling it in the box below.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">numStats</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Add to the body of your function by printing out second line of text.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Your code here</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Test to make sure your function properly prints the first two lines by calling it in the box below.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">numStats</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Complete the function by adding to the body of your function so that it prints the final line.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Your code here</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Test to make sure your function properly works.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">numStats</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Incremental development is a key tool for writing code, especially complex code!  We will employ this strategy as the semester progresses and we learn more cool coding concepts.</p>
+<p><a id="sec9"></a></p>
+</section>
+<section id="exercise-3-old-macdonald-s-song">
+<h2>9. Exercise 3: Old Macdonald’s Song<a class="headerlink" href="#exercise-3-old-macdonald-s-song" title="Link to this heading">#</a></h2>
+<p>Define a function named <code class="docutils literal notranslate"><span class="pre">verse</span></code> to generate verses of the song, Old MacDonald had a farm.<br />
+What should the function parameters be?</p>
+<p>Old MacDonald had a farm, EE-I-EE-I-O,<br />
+And on that farm he had a <strong>cow</strong>, EE-I-EE-I-O,<br />
+With a <strong>moo moo</strong> here and a <strong>moo moo</strong> there<br />
+Here a <strong>moo</strong>, there a <strong>moo</strong>, everyone a <strong>moo moo</strong><br />
+Old MacDonald had a farm, EE-I-EE-I-O.</p>
+<p>Old MacDonald had a farm, EE-I-EE-I-O,<br />
+And on that farm he had a <strong>chicken</strong>, EE-I-EE-I-O,<br />
+With a <strong>cluck cluck</strong> here and a <strong>cluck cluck</strong> there<br />
+Here a <strong>cluck</strong>, there a <strong>cluck</strong>, everyone a <strong>cluck cluck</strong><br />
+Old MacDonald had a farm, EE-I-EE-I-O.</p>
+<p>Old MacDonald had a farm, EE-I-EE-I-O,<br />
+And on that farm he had a horse, EE-I-EE-I-O,<br />
+With a neigh neigh here and a neigh neigh there<br />
+Here a neigh, there a neigh, everyone a neigh neigh<br />
+Old MacDonald had a farm, EE-I-EE-I-O.</p>
+<p>Old MacDonald had a farm, EE-I-EE-I-O,<br />
+And on that farm he had a sheep, EE-I-EE-I-O,<br />
+With a baa baa here and a baa baa there<br />
+Here a baa, there a baa, everyone a baa baa<br />
+Old MacDonald had a farm, EE-I-EE-I-O.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Flesh out the definition for the function verse</span>
+
+<span class="k">def</span> <span class="nf">verse</span><span class="p">(</span><span class="n">animal</span><span class="p">,</span> <span class="n">noise</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Writes a verse of five lines for the Old Macdonald song.&quot;&quot;&quot;</span>
+    
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Old MacDonald had a farm, EE-I-EE-I-O,&#39;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;And on that farm he had a &#39;</span> <span class="o">+</span> <span class="n">animal</span> <span class="o">+</span> <span class="s1">&#39;, EE-I-EE-I-O,&#39;</span><span class="p">)</span>
+    
+    <span class="c1"># Your code here - complete this function body</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Test your function below to generate a few different verses.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">verse</span><span class="p">(</span><span class="s1">&#39;cow&#39;</span><span class="p">,</span> <span class="s1">&#39;moo&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">verse</span><span class="p">(</span><span class="s1">&#39;chicken&#39;</span><span class="p">,</span> <span class="s1">&#39;cluck&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">verse</span><span class="p">(</span><span class="s1">&#39;horse&#39;</span><span class="p">,</span> <span class="s1">&#39;neigh&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><a id="sec10"></a></p>
+</section>
+<section id="functions-with-graphics">
+<h2>10. Functions with Graphics<a class="headerlink" href="#functions-with-graphics" title="Link to this heading">#</a></h2>
+<p>We can also use functions to help us easily implement turtle graphics.  But first let’s motivate the need for functions.  Here is a turtle picture below that makes three stars.  Remember to first import the necessary turtle modules.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">turtle</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span> <span class="nn">turtleBeads</span> <span class="kn">import</span> <span class="o">*</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">reset</span><span class="p">()</span>
+<span class="n">setupTurtle</span><span class="p">()</span>
+
+<span class="n">teleport</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
+<span class="n">rt</span><span class="p">(</span><span class="mi">72</span><span class="p">)</span>
+<span class="n">fd</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>
+<span class="n">rt</span><span class="p">(</span><span class="mi">144</span><span class="p">)</span>
+<span class="n">fd</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>
+<span class="n">rt</span><span class="p">(</span><span class="mi">144</span><span class="p">)</span>
+<span class="n">fd</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>
+<span class="n">rt</span><span class="p">(</span><span class="mi">144</span><span class="p">)</span>
+<span class="n">fd</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>
+<span class="n">rt</span><span class="p">(</span><span class="mi">144</span><span class="p">)</span>
+<span class="n">fd</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>
+<span class="n">rt</span><span class="p">(</span><span class="mi">72</span><span class="p">)</span>
+
+<span class="n">teleport</span><span class="p">(</span><span class="mi">200</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
+<span class="n">rt</span><span class="p">(</span><span class="mi">72</span><span class="p">)</span>
+<span class="n">fd</span><span class="p">(</span><span class="mi">200</span><span class="p">)</span>
+<span class="n">rt</span><span class="p">(</span><span class="mi">144</span><span class="p">)</span>
+<span class="n">fd</span><span class="p">(</span><span class="mi">200</span><span class="p">)</span>
+<span class="n">rt</span><span class="p">(</span><span class="mi">144</span><span class="p">)</span>
+<span class="n">fd</span><span class="p">(</span><span class="mi">200</span><span class="p">)</span>
+<span class="n">rt</span><span class="p">(</span><span class="mi">144</span><span class="p">)</span>
+<span class="n">fd</span><span class="p">(</span><span class="mi">200</span><span class="p">)</span>
+<span class="n">rt</span><span class="p">(</span><span class="mi">144</span><span class="p">)</span>
+<span class="n">fd</span><span class="p">(</span><span class="mi">200</span><span class="p">)</span>
+<span class="n">rt</span><span class="p">(</span><span class="mi">72</span><span class="p">)</span>
+
+<span class="n">teleport</span><span class="p">(</span><span class="o">-</span><span class="mi">100</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+<span class="n">rt</span><span class="p">(</span><span class="mi">72</span><span class="p">)</span>
+<span class="n">fd</span><span class="p">(</span><span class="mi">300</span><span class="p">)</span>
+<span class="n">rt</span><span class="p">(</span><span class="mi">144</span><span class="p">)</span>
+<span class="n">fd</span><span class="p">(</span><span class="mi">300</span><span class="p">)</span>
+<span class="n">rt</span><span class="p">(</span><span class="mi">144</span><span class="p">)</span>
+<span class="n">fd</span><span class="p">(</span><span class="mi">300</span><span class="p">)</span>
+<span class="n">rt</span><span class="p">(</span><span class="mi">144</span><span class="p">)</span>
+<span class="n">fd</span><span class="p">(</span><span class="mi">300</span><span class="p">)</span>
+<span class="n">rt</span><span class="p">(</span><span class="mi">144</span><span class="p">)</span>
+<span class="n">fd</span><span class="p">(</span><span class="mi">300</span><span class="p">)</span>
+<span class="n">rt</span><span class="p">(</span><span class="mi">72</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>While the above code works perfectly well, it’s rather long and repetitive.  How can we use functions to abstract away the similar elements between these three stars but still capture their differences?  First think about what is similar:</p>
+<ul class="simple">
+<li><p>All of the code above uses the same right turns</p></li>
+<li><p>All move forward by the same amount within each star</p></li>
+<li><p>All begin by teleporting to the location of the topmost point of the star</p></li>
+</ul>
+<p>Now consider what is different:</p>
+<ul class="simple">
+<li><p>The starting location</p></li>
+<li><p>the length of each side of the star is different</p></li>
+</ul>
+<p><strong>Key idea</strong>: The body of a function should capture the similarities amongst code and the parameters should express the differences.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">star</span><span class="p">(</span><span class="n">startX</span><span class="p">,</span> <span class="n">startY</span><span class="p">,</span> <span class="n">length</span><span class="p">):</span>
+    <span class="n">teleport</span><span class="p">(</span><span class="n">startX</span><span class="p">,</span> <span class="n">startY</span><span class="p">)</span>
+    <span class="n">rt</span><span class="p">(</span><span class="mi">72</span><span class="p">)</span>
+    <span class="n">fd</span><span class="p">(</span><span class="n">length</span><span class="p">)</span>
+    <span class="n">rt</span><span class="p">(</span><span class="mi">144</span><span class="p">)</span>
+    <span class="n">fd</span><span class="p">(</span><span class="n">length</span><span class="p">)</span>
+    <span class="n">rt</span><span class="p">(</span><span class="mi">144</span><span class="p">)</span>
+    <span class="n">fd</span><span class="p">(</span><span class="n">length</span><span class="p">)</span>
+    <span class="n">rt</span><span class="p">(</span><span class="mi">144</span><span class="p">)</span>
+    <span class="n">fd</span><span class="p">(</span><span class="n">length</span><span class="p">)</span>
+    <span class="n">rt</span><span class="p">(</span><span class="mi">144</span><span class="p">)</span>
+    <span class="n">fd</span><span class="p">(</span><span class="n">length</span><span class="p">)</span>
+    <span class="n">rt</span><span class="p">(</span><span class="mi">72</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>To test out our brand new function, first clear and reset the turtle screen</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">reset</span><span class="p">()</span>
+<span class="n">setupTurtle</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now let’s make three function calls using our new function.  Note that these functions do not need to return a value because we are simply drawing the graphics.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">star</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
+<span class="n">star</span><span class="p">(</span><span class="mi">200</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">200</span><span class="p">)</span>
+<span class="n">star</span><span class="p">(</span><span class="o">-</span><span class="mi">100</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">300</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Our star example is a great instance of the power of <strong>abstraction</strong>.  Remember that abstraction is the process of hiding inner details and capturing essential similarities.  Here the implementation of our function captures what is similar among all five-pointed stars and wraps those details in a function.  The contract of the function allows the users to pass arguments to express the differences among stars.</p>
+<p>You may notice some repetition within the function <code class="docutils literal notranslate"><span class="pre">star</span></code>, in particular the repeated calls to <code class="docutils literal notranslate"><span class="pre">fd(length)</span></code> and <code class="docutils literal notranslate"><span class="pre">rt(144)</span></code>.  We can reduce this repetition through iteration.  We will get there in a few weeks!</p>
+<p><a id="sec11"></a></p>
+</section>
+<section id="exercise-4-colorful-stars">
+<h2>11. Exercise 4: Colorful Stars<a class="headerlink" href="#exercise-4-colorful-stars" title="Link to this heading">#</a></h2>
+<p>Suppose we want to be able to change the pen color for each star so the outline is a different color.  How should we amend our function to capture this difference?  You can change the pencolor with the function <code class="docutils literal notranslate"><span class="pre">pencolor(color)</span></code> where <code class="docutils literal notranslate"><span class="pre">color</span></code> is the color of the pen as a string.  Write your answer below.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">colorfulStar</span><span class="p">(</span><span class="n">startX</span><span class="p">,</span> <span class="n">startY</span><span class="p">,</span> <span class="n">length</span><span class="p">,</span> <span class="n">color</span><span class="p">):</span>
+    <span class="c1"># Your code here</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">reset</span><span class="p">()</span>
+<span class="n">setupTurtle</span><span class="p">()</span>
+<span class="n">speed</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span> <span class="c1"># help see your turtle draw in a slower speed</span>
+<span class="n">colorfulStar</span><span class="p">(</span><span class="o">-</span><span class="mi">100</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="s1">&#39;red&#39;</span><span class="p">)</span>
+<span class="n">colorfulStar</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="s1">&#39;blue&#39;</span><span class="p">)</span>
+<span class="n">colorfulStar</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="o">-</span><span class="mi">100</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="s1">&#39;grey&#39;</span><span class="p">)</span>
+<span class="n">colorfulStar</span><span class="p">(</span><span class="o">-</span><span class="mi">100</span><span class="p">,</span> <span class="o">-</span><span class="mi">100</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="s1">&#39;cyan&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><a id="sec12"></a></p>
+</section>
+<section id="exercise-5-drawrectangle">
+<h2>12. Exercise 5: <code class="docutils literal notranslate"><span class="pre">drawRectangle</span></code><a class="headerlink" href="#exercise-5-drawrectangle" title="Link to this heading">#</a></h2>
+<p>You have been using the python module <code class="docutils literal notranslate"><span class="pre">turtleBeads.py</span></code>.  It was developed by our lab instructor Peter Mawhorter.  Let’s try and implement some of the functions provided to you by <code class="docutils literal notranslate"><span class="pre">turtleBeads.py</span></code>.</p>
+<p>Right now <code class="docutils literal notranslate"><span class="pre">turtleBeads.py</span></code> has a function called <code class="docutils literal notranslate"><span class="pre">drawRectangle</span></code> which draws a centered rectangle about the location of the turtle of height <code class="docutils literal notranslate"><span class="pre">height</span></code> and width <code class="docutils literal notranslate"><span class="pre">width</span></code>.</p>
+<p>Below define your own implementation of <code class="docutils literal notranslate"><span class="pre">drawRectangle</span></code>.  Note you will want to use <code class="docutils literal notranslate"><span class="pre">penup</span></code> and <code class="docutils literal notranslate"><span class="pre">pendown</span></code> since the rectangle needs to be centered about the starting position of the turle.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">drawRectangle</span><span class="p">(</span><span class="n">width</span><span class="p">,</span> <span class="n">height</span><span class="p">):</span>
+    <span class="c1"># Your code here</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Test your code below.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">reset</span><span class="p">()</span>
+<span class="n">setupTurtle</span><span class="p">()</span>
+<span class="n">drawRectangle</span><span class="p">(</span><span class="mi">300</span><span class="p">,</span> <span class="mi">400</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><a id="sec13"></a></p>
+</section>
+<section id="exercise-6-drawsquare">
+<h2>13. Exercise 6: <code class="docutils literal notranslate"><span class="pre">drawSquare</span></code><a class="headerlink" href="#exercise-6-drawsquare" title="Link to this heading">#</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">turtleBeads.py</span></code> also provides a very similar function to <code class="docutils literal notranslate"><span class="pre">drawRectangle(width,</span> <span class="pre">height)</span></code> called <code class="docutils literal notranslate"><span class="pre">drawSquare(size)</span></code>.  <code class="docutils literal notranslate"><span class="pre">drawSquare</span></code> is self-explanatory.  It is a function that draws a square centered around the current location of the turtle.  Below implement <code class="docutils literal notranslate"><span class="pre">drawSquare</span></code>.  Be judicious though.  How is a square similar to a rectangle?  Can you use something you’ve already created to implement <code class="docutils literal notranslate"><span class="pre">drawSquare</span></code>?</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">drawSquare</span><span class="p">(</span><span class="n">size</span><span class="p">):</span>
+    <span class="c1"># Your code here</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Test your code below.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">reset</span><span class="p">()</span>
+<span class="n">setupTurtle</span><span class="p">()</span>
+<span class="n">drawSquare</span><span class="p">(</span><span class="mi">300</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><a id="sec14"></a></p>
+</section>
+<section id="fish-tank">
+<h2>14. Fish Tank<a class="headerlink" href="#fish-tank" title="Link to this heading">#</a></h2>
+<p>Below is some code to draw a fish with a yellow body, black eye, and a green tail.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">staticFish</span><span class="p">():</span>
+    <span class="c1"># Make the body by drawing a yellow elipses </span>
+    <span class="n">fillcolor</span><span class="p">(</span><span class="s2">&quot;yellow&quot;</span><span class="p">)</span>
+    <span class="n">begin_fill</span><span class="p">()</span>
+    <span class="n">drawEllipse</span><span class="p">(</span><span class="mi">50</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span> <span class="c1"># 50 is radius and 2 is aspect ratio (makes it wider horizontally and thinner vertically)</span>
+    <span class="n">end_fill</span><span class="p">()</span>
+
+    <span class="c1"># Make the eye by drawing a black circle to the upper right of the ellipse</span>
+    <span class="n">penup</span><span class="p">()</span>
+    <span class="n">fd</span><span class="p">(</span><span class="mi">50</span><span class="p">)</span>
+    <span class="n">lt</span><span class="p">(</span><span class="mi">90</span><span class="p">)</span>
+    <span class="n">fd</span><span class="p">(</span><span class="mi">15</span><span class="p">)</span>
+    <span class="n">rt</span><span class="p">(</span><span class="mi">90</span><span class="p">)</span>
+    <span class="n">pendown</span><span class="p">()</span>
+    <span class="n">fillcolor</span><span class="p">(</span><span class="s2">&quot;black&quot;</span><span class="p">)</span>
+    <span class="n">begin_fill</span><span class="p">()</span>
+    <span class="n">drawCircle</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+    <span class="n">end_fill</span><span class="p">()</span>
+
+    <span class="c1"># Make the tail by drawing a green triangle on the left sideof the ellipse</span>
+    <span class="n">penup</span><span class="p">()</span>
+    <span class="n">rt</span><span class="p">(</span><span class="mi">90</span><span class="p">)</span>
+    <span class="n">fd</span><span class="p">(</span><span class="mi">15</span><span class="p">)</span>
+    <span class="n">rt</span><span class="p">(</span><span class="mi">90</span><span class="p">)</span>
+    <span class="n">fd</span><span class="p">(</span><span class="mi">150</span><span class="p">)</span>
+    <span class="n">lt</span><span class="p">(</span><span class="mi">180</span><span class="p">)</span>
+    <span class="n">pendown</span><span class="p">()</span>
+    <span class="n">fillcolor</span><span class="p">(</span><span class="s2">&quot;green&quot;</span><span class="p">)</span> 
+    <span class="n">begin_fill</span><span class="p">()</span>
+    <span class="n">rt</span><span class="p">(</span><span class="mi">150</span><span class="p">)</span>
+    <span class="n">fd</span><span class="p">(</span><span class="mi">65</span><span class="p">)</span>
+    <span class="n">rt</span><span class="p">(</span><span class="mi">120</span><span class="p">)</span>
+    <span class="n">fd</span><span class="p">(</span><span class="mi">65</span><span class="p">)</span>
+    <span class="n">rt</span><span class="p">(</span><span class="mi">120</span><span class="p">)</span>
+    <span class="n">fd</span><span class="p">(</span><span class="mi">65</span><span class="p">)</span>
+    <span class="n">lt</span><span class="p">(</span><span class="mi">30</span><span class="p">)</span>
+    <span class="n">end_fill</span><span class="p">()</span>
+
+    <span class="c1"># return the turtle back to the original starting point</span>
+    <span class="n">penup</span><span class="p">()</span>
+    <span class="n">fd</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>
+    <span class="n">pendown</span><span class="p">()</span>
+
+<span class="n">reset</span><span class="p">()</span>
+<span class="n">setupTurtle</span><span class="p">()</span>
+<span class="n">staticFish</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Our function is rather limited in that it always draws the same fish in the exact same position and orientation.  How can we expand our fish function to make it more flexible for drawing different kinds of fish?  First, let’s identify some characteristics that should be different among fish?</p>
+<ul class="simple">
+<li><p>Body color</p></li>
+<li><p>Tail color</p></li>
+<li><p>Starting location</p></li>
+<li><p>Angle</p></li>
+<li><p>Size</p></li>
+</ul>
+<p>What should be similar for all fish?  Well it should be made of an ellipse, circle, and triangle and all of those pieces should still be proportional to each other. Below, amend the function header for <code class="docutils literal notranslate"><span class="pre">fish</span></code> below to capture these five differences and then implement each of the differences we stated above.  Work incrementally!  I suggest going in the order stated in our list above.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">fish</span><span class="p">(</span><span class="n">bodyColor</span><span class="p">,</span> <span class="n">tailColor</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">scale</span><span class="p">,</span> <span class="n">angle</span><span class="p">):</span>
+    <span class="c1"># Your code here</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Below test your code.  You should have a very pretty fish tank with different fish.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">drawCanvas</span><span class="p">(</span><span class="n">width</span><span class="p">,</span> <span class="n">height</span><span class="p">,</span> <span class="n">color</span><span class="p">):</span>
+    <span class="n">teleport</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+    <span class="n">fillcolor</span><span class="p">(</span><span class="n">color</span><span class="p">)</span>
+    <span class="n">begin_fill</span><span class="p">()</span>
+    <span class="n">drawRectangle</span><span class="p">(</span><span class="n">width</span><span class="p">,</span> <span class="n">height</span><span class="p">)</span>
+    <span class="n">end_fill</span><span class="p">()</span>
+
+<span class="c1"># Picture</span>
+<span class="n">reset</span><span class="p">()</span>
+<span class="n">setupTurtle</span><span class="p">()</span>
+<span class="n">drawCanvas</span><span class="p">(</span><span class="mi">800</span><span class="p">,</span> <span class="mi">800</span><span class="p">,</span> <span class="s2">&quot;cyan&quot;</span><span class="p">)</span>
+<span class="n">fish</span><span class="p">(</span><span class="s2">&quot;yellow&quot;</span><span class="p">,</span> <span class="s2">&quot;green&quot;</span><span class="p">,</span> <span class="o">-</span><span class="mi">175</span><span class="p">,</span> <span class="mi">200</span><span class="p">,</span> <span class="mf">1.5</span><span class="p">,</span> <span class="mi">45</span><span class="p">)</span>
+<span class="n">fish</span><span class="p">(</span><span class="s2">&quot;blue&quot;</span><span class="p">,</span> <span class="s2">&quot;red&quot;</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="o">-</span><span class="mi">45</span><span class="p">)</span>
+<span class="n">fish</span><span class="p">(</span><span class="s2">&quot;purple&quot;</span><span class="p">,</span> <span class="s2">&quot;blue&quot;</span><span class="p">,</span> <span class="o">-</span><span class="mi">200</span><span class="p">,</span> <span class="o">-</span><span class="mi">200</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+<span class="n">fish</span><span class="p">(</span><span class="s2">&quot;orange&quot;</span><span class="p">,</span> <span class="s2">&quot;purple&quot;</span><span class="p">,</span> <span class="mi">150</span><span class="p">,</span> <span class="o">-</span><span class="mi">150</span><span class="p">,</span> <span class="mf">1.5</span><span class="p">,</span> <span class="o">-</span><span class="mi">60</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>One important point to note.  A key aspect that made amending the <code class="docutils literal notranslate"><span class="pre">staticFish</span></code> function much less laborious was that the function didn’t rely on <code class="docutils literal notranslate"><span class="pre">teleport()</span></code> to move the turtle from shape to shape.  Why was that helpful?  Changing the angle of the entire fish becomes much more complex if you need to recalculate the x and y coordinates of each teleport to account for the angle.</p>
+<p><a id="sec15"></a></p>
+</section>
+<section id="fruitful-graphics">
+<h2>15. Fruitful Graphics<a class="headerlink" href="#fruitful-graphics" title="Link to this heading">#</a></h2>
+<p>We say that a function is fruitful if it returns a value.  If a function does not return a value, then we say the function is not fruitful.  Technically, functions without <code class="docutils literal notranslate"><span class="pre">return</span></code> do in fact return <code class="docutils literal notranslate"><span class="pre">None</span></code> but <code class="docutils literal notranslate"><span class="pre">None</span></code> serves as a placeholder to represent nothing.  All of the above graphic functions we have worked with have not been fruitful.  They draw pictures, which are side-effects, but do not return anything.  Let’s now make some fruitful turtle graphics that return key statistics about the pictures drawn.</p>
+<p>Here is a simple example below that draws a triangle.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">triangle</span><span class="p">(</span><span class="n">size</span><span class="p">):</span>
+    <span class="n">rt</span><span class="p">(</span><span class="mi">60</span><span class="p">)</span>
+    <span class="n">fd</span><span class="p">(</span><span class="n">size</span><span class="p">)</span>
+    <span class="n">rt</span><span class="p">(</span><span class="mi">120</span><span class="p">)</span>
+    <span class="n">fd</span><span class="p">(</span><span class="n">size</span><span class="p">)</span>
+    <span class="n">rt</span><span class="p">(</span><span class="mi">120</span><span class="p">)</span>
+    <span class="n">fd</span><span class="p">(</span><span class="n">size</span><span class="p">)</span>
+    <span class="n">rt</span><span class="p">(</span><span class="mi">60</span><span class="p">)</span>
+    
+<span class="n">reset</span><span class="p">()</span>
+<span class="n">setupTurtle</span><span class="p">()</span>
+<span class="n">triangle</span><span class="p">(</span><span class="mi">50</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Suppose we wanted to draw a triangle but also return the perimeter.  We can add to the function above by simply returning the perimeter at the end.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">trianglePlusPerimeter</span><span class="p">(</span><span class="n">size</span><span class="p">):</span>
+    <span class="n">rt</span><span class="p">(</span><span class="mi">60</span><span class="p">)</span>
+    <span class="n">fd</span><span class="p">(</span><span class="n">size</span><span class="p">)</span>
+    <span class="n">rt</span><span class="p">(</span><span class="mi">120</span><span class="p">)</span>
+    <span class="n">fd</span><span class="p">(</span><span class="n">size</span><span class="p">)</span>
+    <span class="n">rt</span><span class="p">(</span><span class="mi">120</span><span class="p">)</span>
+    <span class="n">fd</span><span class="p">(</span><span class="n">size</span><span class="p">)</span>
+    <span class="n">rt</span><span class="p">(</span><span class="mi">60</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">size</span> <span class="o">*</span> <span class="mi">3</span>
+    
+<span class="n">reset</span><span class="p">()</span>
+<span class="n">setupTurtle</span><span class="p">()</span>
+<span class="n">trianglePlusPerimeter</span><span class="p">(</span><span class="mi">50</span><span class="p">)</span> <span class="c1"># should return 150</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><a id="sec16"></a></p>
+</section>
+<section id="exercise-7-fruitful-square">
+<h2>16. Exercise 7: Fruitful Square<a class="headerlink" href="#exercise-7-fruitful-square" title="Link to this heading">#</a></h2>
+<p>Below define a function that draws a square of side <code class="docutils literal notranslate"><span class="pre">size</span></code> and returns the perimeter of the square.  Unlike the <code class="docutils literal notranslate"><span class="pre">drawSquare</span></code> function from <code class="docutils literal notranslate"><span class="pre">turtleBeads.py</span></code>, let’s not center the square around the starting point for simplicity.  Instead the starting point should be the upper left corner of the square.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">squarePlusPerimeter</span><span class="p">(</span><span class="n">size</span><span class="p">):</span>
+    <span class="c1"># Your code here</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Test your code below.  It should return 400.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">reset</span><span class="p">()</span>
+<span class="n">setupTurtle</span><span class="p">()</span>
+<span class="n">squarePlusPerimeter</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now that we have two functions that can return perimeter, it becomes easy to get the perimeter of a canvas of shapes.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">reset</span><span class="p">()</span>
+<span class="n">setupTurtle</span><span class="p">()</span>
+
+<span class="n">totalSize</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">pu</span><span class="p">()</span>
+<span class="n">bk</span><span class="p">(</span><span class="mi">200</span><span class="p">)</span>
+<span class="n">pd</span><span class="p">()</span>
+<span class="n">totalSize</span> <span class="o">+=</span> <span class="n">trianglePlusPerimeter</span><span class="p">(</span><span class="mi">50</span><span class="p">)</span>
+<span class="n">pu</span><span class="p">()</span>
+<span class="n">fd</span><span class="p">(</span><span class="mi">75</span><span class="p">)</span>
+<span class="n">pd</span><span class="p">()</span>
+<span class="n">totalSize</span> <span class="o">+=</span> <span class="n">squarePlusPerimeter</span><span class="p">(</span><span class="mi">50</span><span class="p">)</span>
+<span class="n">pu</span><span class="p">()</span>
+<span class="n">fd</span><span class="p">(</span><span class="mi">125</span><span class="p">)</span>
+<span class="n">pd</span><span class="p">()</span>
+<span class="n">totalSize</span> <span class="o">+=</span> <span class="n">trianglePlusPerimeter</span><span class="p">(</span><span class="mi">50</span><span class="p">)</span>
+<span class="n">pu</span><span class="p">()</span>
+<span class="n">fd</span><span class="p">(</span><span class="mi">75</span><span class="p">)</span>
+<span class="n">pd</span><span class="p">()</span>
+<span class="n">totalSize</span> <span class="o">+=</span> <span class="n">squarePlusPerimeter</span><span class="p">(</span><span class="mi">50</span><span class="p">)</span>
+<span class="n">pu</span><span class="p">()</span>
+<span class="n">fd</span><span class="p">(</span><span class="mi">125</span><span class="p">)</span>
+<span class="n">pd</span><span class="p">()</span>
+<span class="n">totalSize</span> <span class="o">+=</span> <span class="n">trianglePlusPerimeter</span><span class="p">(</span><span class="mi">50</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">totalSize</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><a id="sec17"></a></p>
+</section>
+<section id="practice-writing-functions">
+<h2>17. Practice Writing Functions<a class="headerlink" href="#practice-writing-functions" title="Link to this heading">#</a></h2>
+<p>Pick one of the following and define a new function. It’s good to have practice translating the English description into Python.</p>
+<section id="a-squarediff">
+<h3>A. squareDiff<a class="headerlink" href="#a-squarediff" title="Link to this heading">#</a></h3>
+<p>Define a function called <code class="docutils literal notranslate"><span class="pre">squareDiff</span></code> that takes two numbers and returns the positive difference between their squares (you can use <code class="docutils literal notranslate"><span class="pre">abs()</span></code>).
+<code class="docutils literal notranslate"><span class="pre">squareDiff(4,</span> <span class="pre">3)</span> <span class="pre">returns</span> <span class="pre">7;</span> <span class="pre">squareDiff(5,</span> <span class="pre">11)</span> <span class="pre">returns</span> <span class="pre">96.</span></code>
+thon.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Your code here</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Test your squareDiff function here</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">squareDiff</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span> <span class="c1"># should print 75</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">squareDiff</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span> <span class="c1"># should print 7</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">squareDiff</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">11</span><span class="p">))</span> <span class="c1"># should print 96</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="b-lottery">
+<h3>B. lottery<a class="headerlink" href="#b-lottery" title="Link to this heading">#</a></h3>
+<p>Given a function <code class="docutils literal notranslate"><span class="pre">lucky()</span></code> that returns a random integer between 1 and 100, define a function called <code class="docutils literal notranslate"><span class="pre">lottery</span></code> that will print 3 random lottery numbers with each number separated by a space.</p>
+<p>For example, <code class="docutils literal notranslate"><span class="pre">lottery()</span></code> might print 57 81 41.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">random</span>
+
+<span class="k">def</span> <span class="nf">lucky</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&#39;&#39;&#39;Returns a random integer between 1 and 100, inclusive&#39;&#39;&#39;</span>
+    <span class="k">return</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">100</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Your code here</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">lottery</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">lottery</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="c-greeting">
+<h3>C. greeting<a class="headerlink" href="#c-greeting" title="Link to this heading">#</a></h3>
+<p>Define a function called <code class="docutils literal notranslate"><span class="pre">greeting</span></code> that asks for a user’s name using input(), and then prints a personalized greeting. E.g.   <code class="docutils literal notranslate"><span class="pre">Please</span> <span class="pre">tell</span> <span class="pre">me</span> <span class="pre">your</span> <span class="pre">name:</span>&#160; <span class="pre">Joyce</span> </code> <br> <code class="docutils literal notranslate"><span class="pre">“Hi</span> <span class="pre">Joyce,</span> <span class="pre">hope</span> <span class="pre">you’re</span> <span class="pre">having</span> <span class="pre">a</span> <span class="pre">great</span> <span class="pre">day!”</span> <span class="pre">or</span> <span class="pre">something</span> <span class="pre">similar.</span></code></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Your code here</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">greeting</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">greeting</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="d-splitsquare">
+<h3>D.  splitSquare<a class="headerlink" href="#d-splitsquare" title="Link to this heading">#</a></h3>
+<p>Define a function called <code class="docutils literal notranslate"><span class="pre">splitSquare</span></code> that takes 2 colors and draws a size square using <code class="docutils literal notranslate"><span class="pre">turtleBeads</span></code>, where the left half is filled with one color, and the right half with the other color. For example, here is the picture drawn when we call <code class="docutils literal notranslate"><span class="pre">splitSquare(100,</span> <span class="pre">'black',</span> <span class="pre">'orange')</span></code>:
+<img src="splitSquare.png" width="250"></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">turtle</span>
+<span class="kn">from</span> <span class="nn">turtleBeads</span> <span class="kn">import</span> <span class="o">*</span>
+
+<span class="c1"># Your code here</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">reset</span><span class="p">()</span>
+<span class="n">setupTurtle</span><span class="p">()</span>
+
+<span class="n">splitSquare</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="s1">&#39;red&#39;</span><span class="p">,</span><span class="s1">&#39;pink&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./content/Lecture03"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="../Lecture02/PythonIntroWithSolutions.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Introduction to the Python Language - Solutions</p>
+      </div>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#defining-your-own-functions">1. Defining your own functions</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#multiple-parameters">2. Multiple parameters</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-1-define-your-own-function-average">3. Exercise 1: Define your own function: <code class="docutils literal notranslate"><span class="pre">average</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#functions-that-call-other-functions">4. Functions that call other functions</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#zero-parameter-functions">5. Zero-Parameter Functions</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#return-vs-print">6. <code class="docutils literal notranslate"><span class="pre">return</span></code> vs. <code class="docutils literal notranslate"><span class="pre">print</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#functions-with-side-effect-and-no-return-value">7. Functions with side effect and no return value</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-2-incremental-development-of-functions-with-number-statistics">8. Exercise 2: Incremental Development of Functions with Number Statistics</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-3-old-macdonald-s-song">9. Exercise 3: Old Macdonald’s Song</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#functions-with-graphics">10. Functions with Graphics</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-4-colorful-stars">11. Exercise 4: Colorful Stars</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-5-drawrectangle">12. Exercise 5: <code class="docutils literal notranslate"><span class="pre">drawRectangle</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-6-drawsquare">13. Exercise 6: <code class="docutils literal notranslate"><span class="pre">drawSquare</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fish-tank">14. Fish Tank</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fruitful-graphics">15. Fruitful Graphics</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-7-fruitful-square">16. Exercise 7: Fruitful Square</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#practice-writing-functions">17. Practice Writing Functions</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#a-squarediff">A. squareDiff</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#b-lottery">B. lottery</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c-greeting">C. greeting</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#d-splitsquare">D.  splitSquare</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By The Jupyter Book Community
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
